@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formulaire de connexion{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row justify-content-center mt-5">
+
+        {% if error %}
+            <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+
+            <form action="{{ path('login') }}" method="POST" class="col-8">
+                <label for="username" class="form_label">Identifiant</label>
+                <input type="text" class="form-control" id="username" name="_username" value = {{ last_username }}>
+
+                <label for="password" class="form_label">Mot de passe</label>
+                <input type="text" class="form-control" id="password" name="_password">
+
+                <input type="hidden" name="_taget_path" value="{{ path('login') }}">
+
+                <div class="d-flex">
+                    <input type="submit" class="btn btn-success" value="Connexion">
+                    <a type="button" class="btn btn-info" href="">Inscription</a>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
